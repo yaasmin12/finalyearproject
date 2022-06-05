@@ -1,8 +1,10 @@
 # Importing essential libraries and modules
 
-from flask import Flask, render_template, request, Markup
+from flask import Flask, render_template, redirect, request, Markup
 import numpy as np
 import pandas as pd
+from torch.distributed.elastic.multiprocessing.redirects import redirect
+
 from utils.disease import disease_dic
 from utils.fertilizer import fertilizer_dic
 import requests
@@ -166,18 +168,18 @@ def disease():
 @ app.route('/crop-predict', methods=['POST'])
 def crop_prediction():
     if request.method == 'POST':
-        N = int(request.form['nitrogen'])
-        P = int(request.form['phosphorous'])
-        K = int(request.form['pottasium'])
+        nit = int(request.form['nitrogen'])
+        pho = int(request.form['phosphorous'])
+        pot = int(request.form['pottasium'])
         ph = float(request.form['ph'])
         rainfall = float(request.form['rainfall'])
 
         # state = request.form.get("stt")
         city = request.form.get("city")
 
-        if weather_fetch(city) != None:
+        if weather_fetch(city) != 0:
             temperature, humidity = weather_fetch(city)
-            data = np.array([[N, P, K, temperature, humidity, ph, rainfall]])
+            data = np.array([[nit, pho, pot, temperature, humidity, ph, rainfall]])
             my_prediction = crop_recommendation_model.predict(data)
             final_prediction = my_prediction[0]
 
@@ -193,28 +195,28 @@ def crop_prediction():
 @ app.route('/fertilizer-predict', methods=['POST'])
 def fert_recommend():
     crop_name = str(request.form['cropname'])
-    N = int(request.form['nitrogen'])
-    P = int(request.form['phosphorous'])
-    K = int(request.form['pottasium'])
+    nit = int(request.form['nitrogen'])
+    pho = int(request.form['phosphorous'])
+    pot = int(request.form['pottasium'])
     # ph = float(request.form['ph'])
 
     df = pd.read_csv('Data/fertilizer.csv')
 
-    nr = df[df['Crop'] == crop_name]['N'].iloc[0]
-    pr = df[df['Crop'] == crop_name]['P'].iloc[0]
-    kr = df[df['Crop'] == crop_name]['K'].iloc[0]
+    nr = df[df['Crop'] == crop_name]['nit'].iloc[0]
+    pr = df[df['Crop'] == crop_name]['pho'].iloc[0]
+    kr = df[df['Crop'] == crop_name]['pot'].iloc[0]
 
-    n = nr - N
-    p = pr - P
-    k = kr - K
-    temp = {abs(n): "N", abs(p): "P", abs(k): "K"}
+    n = nr - nit
+    p = pr - pho
+    k = kr - pot
+    temp = {abs(n): "nit", abs(p): "pho", abs(k): "pot"}
     max_value = temp[max(temp.keys())]
-    if max_value == "N":
+    if max_value == "nit":
         if n < 0:
             key = 'NHigh'
         else:
             key = "Nlow"
-    elif max_value == "P":
+    elif max_value == "pho":
         if p < 0:
             key = 'PHigh'
         else:
@@ -252,4 +254,4 @@ def disease_prediction():
 
 # ===============================================================================================
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="localhost", port=3000, debug=True)
