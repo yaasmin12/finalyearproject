@@ -4,19 +4,19 @@
 <!-- banner -->
 <section class="banner_w3lspvt" id="home">
 	<div class="csslider infinity" id="slider1">
-	
+
 				<div class="banner-top">
 					<div class="overlay">
 						<div class="container">
 							<div class="w3layouts-banner-info text-center">
 								<h3 class="text-wh">FarmEasy</h3>
-								<h4 class="text-wh mx-auto my-4"><b>Get informed decisions about your farming strategy.</b></h4>
+								<h4 style="font-size:3vw" class="text-wh mx-auto my-4"><b>A Digitalized solution to your Agricultural Needs</b></h4>
 								<br>
-								<h4 class="text-wh mx-auto my-4"><strong> Here are some questions we'll answer</strong></h4>
-								<p class="text-li mx-auto mt-2">
-									1. What crop to plant here? <br>
-									2. What fertilizer to use? <br>
-									3. Which disease do your crop have ?</p>
+								<h4 class="text-wh mx-auto my-4"><strong>An Agri-Tech Service that answers queries:</strong></h4>
+								<p align="left" class="text-li mx-auto mt-2">
+									1. The types of crop to be cultivated in a specific environment <br>
+									2. The types of fertiliser or alternatives suggested for plant deficiency <br>
+									3. Disease Detection with Suggestive Cures  </p>
 							</div>
 						</div>
 					</div>
@@ -28,19 +28,14 @@
 <!-- core values -->
 <section class="core-value py-5">
 	<div class="container py-md-4">
-		<h3 class="heading mb-sm-5 mb-4 text-center"> About Us</h3>
+		<h3 class="heading mb-sm-5 mb-4 text-center">Services We Offer</h3>
 		<div class="row core-grids">
 			<div class="col-lg-6 core-left">
-				<img src="{{ url_for('static', filename='images/core.jpg') }}" class="img-fluid" alt="" />
+				<img src="{{ url_for('static', filename='images/s3 og.jpg') }}" class="img-fluid" alt="" />
 			</div>
 			<div class="col-lg-6 core-right">
-				<h3 class="mt-4">Improving Agriculture, Improving Lives, Cultivating Crops To Make Farmers Increase
-					Profit.</h3>
-				<p class="mt-3">We use state-of-the-art machine learning and deep learning technologies to help you
-					guide through
-					the entire farming process. Make informed decisions to understand the demographics of your area,
-					understand the
-					factors that affect your crop and keep them healthy for a super awesome successful yield.</p>
+				<!--<h3 class="mt-4">Services We Offer</h3> -->
+				<p class="mt-3">We developed easy to use online platforms that serve as a knowledge-transfer mechanism from experts to agricultural practitioners. Dive into our state-of-the-art Machine-Learning and Deep Learning Technologies and experience a walk-in assisting you to make decisive farming decisions.  Complementing with the Expert Insights, this is a One Click system in which the farmer simply inputs the essential Nutrient Values of Nitrogen(N), Phosphorus (P), Potassium (K) along with the PH values, rainfall (in mm) and State/City within the Indian Terrain, gaining wholesome satisfactory yields!</p>
 			</div>
 		</div>
 	</div>
@@ -53,7 +48,7 @@
 		<h3 class="heading mb-sm-5 mb-4 text-center"> Our Services</h3>
 		<div class="row blog-grids">
 			<div class="col-lg-4 col-md-6 blog-left mb-lg-0 mb-sm-5 pb-lg-0 pb-5">
-				<img src="{{ url_for('static', filename='images/s3.jpg') }}" class="img-fluid" alt="" />
+				<img src="{{ url_for('static', filename='images/crop_doodle.jpg') }}" class="img-fluid" alt="" />
 				<a href="{{ url_for('crop_recommend') }}">
 					<div class="blog-info">
 
@@ -65,7 +60,7 @@
 				</a>
 			</div>
 			<div class="col-lg-4 col-md-6 blog-middle mb-lg-0 mb-sm-5 pb-lg-0 pb-md-5">
-				<img src="{{ url_for('static', filename='images/s2.jpg') }}" class="img-fluid" alt="" />
+				<img src="{{ url_for('static', filename='images/fertilizer_doodlenew.jpg') }}" class="img-fluid" alt="" />
 				<a href="{{ url_for('fertilizer_recommendation') }}">
 					<div class="blog-info">
 						<h4>Fertilizer</h4>
@@ -76,13 +71,13 @@
 			</div>
 			<div class="col-lg-4 col-md-6 blog-right mt-lg-0 mt-5 pt-lg-0 pt-md-5">
 
-				<img src="{{ url_for('static', filename='images/s4.jpg') }}" class="img-fluid" alt="">
+				<img src="{{ url_for('static', filename='images/crop disease.png') }}" class="img-fluid" alt="">
 
 				<!-- <img src="images/s4.jpg" class="img-fliud" alt="" /> -->
 				<a href="{{ url_for('disease_prediction') }}">
 					<div class="blog-info">
 						<h4>Crop Disease</h4>
-						<p class="mt-2">Predicting the name and causes of crop disease and suggestions to cure it</p>
+						<p class="mt-2">Predicting the name and causes of crop disease and suggestions to cure it by uploading the image of the affected area</p>
 					</div>
 				</a>
 			</div>
